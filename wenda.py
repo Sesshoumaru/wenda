@@ -11,7 +11,10 @@ db.init_app(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    context = {
+        'questions' : Question.query.order_by('-createtime').all()
+    }
+    return render_template("index.html",**context)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -79,6 +82,11 @@ def question():
 
         return redirect(url_for('index'))
 
+
+@app.route("/detail/<question_id>")
+def detail(question_id):
+    question_model = Question.query.filter(Question.id == question_id).first()
+    return render_template('detail.html',question = question_model)
 
 @app.context_processor
 def my_context_processor():
