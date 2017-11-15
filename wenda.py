@@ -54,11 +54,18 @@ def register():
         return render_template('register.html')
 
 
-
 @app.route("/logout/")
 def logout():
     session.clear()
     return redirect(url_for("login"))
+
+
+@app.route("/question/",methods=["GET","POST"])
+def question():
+    if request.method == "GET":
+        return render_template("question.html")
+    else:
+        pass
 
 @app.context_processor
 def my_context_processor():
@@ -66,9 +73,10 @@ def my_context_processor():
     if user_id:
         user = User.query.filter(User.id == user_id).first()
         if user:
-            return {"user":user}
+            return {"user": user}
 
     return {}
+
 
 if __name__ == "__main__":
     app.run()

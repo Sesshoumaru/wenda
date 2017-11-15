@@ -17,3 +17,7 @@ body{
     width: 300px;
     margin: 0 auto;
 }
+.form-container-larger{
+    width: 500px;
+    margin: 0 auto;
+}
