@@ -1,0 +1,37 @@
+.questions {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.questions .question-item {
+    overflow: hidden;
+    padding: 15px 5px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.avatar-group {
+    float: left;
+}
+
+.avatar img {
+    width: 38px;
+}
+
+.question-group {
+    float: left;
+    width: 660px;
+    padding-left:20px;
+}
+
+.question-group div{
+    padding: 4px 0;
+}
+.question-group .question-title a{
+    color: darkblue;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.question-auther {
+    margin-right: 20px;
+}

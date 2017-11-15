@@ -1,5 +1,42 @@
 {% extends 'base.html' %}
 {% block title %}首页{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/index.css') }}">
+{% endblock %}
 {% block main %}
-     这是首页
+    <ul class="questions">
+        <li class="question-item">
+            <div class="avatar-group">
+                <div class="avatar">
+                    <img src="{{ url_for('static',filename = 'images/zhiliao.png') }}" alt="">
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-title"><a href="#">mysql的show语句</a></div>
+                <div class="question-content">mysql中有如下的几个show语句：show database、show table、show cretea table</div>
+                <div class="question-info text-right">
+                    <span class="question-auther ">laobi</span>
+                    <span class="question-createtime">2017-11-15 23:21:12</span>
+                </div>
+            </div>
+        </li>
+
+    <li class="question-item">
+            <div class="avatar-group">
+                <div class="avatar">
+                    <img src="{{ url_for('static',filename = 'images/zhiliao.png') }}" alt="">
+                </div>
+            </div>
+
+            <div class="question-group">
+                <div class="question-title"><a href="#">为讨好未来岳父 小伙随身带酒一天喝1斤</a></div>
+                <div class="question-content">“我和女朋友处了六年，早就该结婚了，可未来岳父总是不同意。”11月15日，山西太原小伙岳强出差间隙拿起酒壶一人独饮起来。原来，小岳去女友家拜访过多次，岳父总是不同意。小岳苦思冥想，突然想起每次和岳父喝酒都“败下阵来”，可能问题出在了这里。为了讨好老丈人，他专门买了白酒和酒壶，一天三顿苦练酒量。一年时间，他喝了9箱白酒，酒量也提升到一顿可以喝一斤。</div>
+                <div class="question-info text-right">
+                    <span class="question-auther ">laobi</span>
+                    <span class="question-createtime">2017-11-15 23:21:12</span>
+                </div>
+            </div>
+        </li>
+    </ul>
 {% endblock %}

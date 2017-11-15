@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 import config
 from extensions import db
-from models import User
+from models import User,Question
 from decorators import login_required
 
 app = Flask(__name__)
@@ -68,7 +68,17 @@ def question():
     if request.method == "GET":
         return render_template("question.html")
     else:
-        pass
+        title = request.form.get('title')
+        content = request.form.get('content')
+        user_id = session.get("user_id")
+
+        question = Question(title = title,content = content)
+        question.author_id = user_id
+        db.session.add(question)
+        db.session.commit()
+
+        return redirect(url_for('index'))
+
 
 @app.context_processor
 def my_context_processor():
