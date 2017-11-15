@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, session
 import config
 from extensions import db
 from models import User
+from decorators import login_required
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -60,7 +61,9 @@ def logout():
     return redirect(url_for("login"))
 
 
+
 @app.route("/question/",methods=["GET","POST"])
+@login_required
 def question():
     if request.method == "GET":
         return render_template("question.html")
