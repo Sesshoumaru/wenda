@@ -54,6 +54,12 @@ def register():
         return render_template('register.html')
 
 
+
+@app.route("/logout/")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
 @app.context_processor
 def my_context_processor():
     user_id = session.get("user_id")
