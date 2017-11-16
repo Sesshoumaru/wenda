@@ -99,5 +99,9 @@ def my_context_processor():
     return {}
 
 
+@app.route("/add_answer/",methods=['POST'])
+def add_answer():
+    pass
+
 if __name__ == "__main__":
     app.run()
