@@ -1,23 +1,29 @@
-body{
+body {
     background-color: #f3f3f3;
 }
 
-.logo{
+ul {
+    list-style-type: none;
+}
+
+.logo {
     width: 100px;
 }
 
-.main{
+.main {
     background: #ffffff;
     width: 730px;
-    margin:0 auto;
+    margin: 0 auto;
     overflow: hidden;
     padding: 10px;
 }
-.form-container{
+
+.form-container {
     width: 300px;
     margin: 0 auto;
 }
-.form-container-larger{
+
+.form-container-larger {
     width: 500px;
     margin: 0 auto;
 }

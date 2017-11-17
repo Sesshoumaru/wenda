@@ -22,3 +22,17 @@ class Question(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey("user.id"),nullable=False)
 
     author = db.relationship('User', backref=db.backref('questions'))
+
+
+class Answer(db.Model):
+    __tablename__ = 'answer'
+
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    content = db.Column(db.Text, nullable=False)
+    createtime = db.Column(db.DateTime, default=datetime.now)
+
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id"), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+    question = db.relationship('Question',backref = db.backref('answers'))
+    author = db.relationship('User', backref=db.backref('answers'))

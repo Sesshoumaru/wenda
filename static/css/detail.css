@@ -1,0 +1,26 @@
+.answers{
+    padding: 10px;
+}
+.answer-item {
+    overflow: hidden;
+    border-bottom: 1px solid #eeeeee;
+    padding: 10px;
+}
+
+.avatar-group {
+    float: left;
+}
+
+.avatar img {
+    width: 38px;
+}
+
+.answer-group {
+    float: left;
+    width: 600px;
+    padding-left:20px;
+}
+
+.answer-group div{
+    padding: 4px 0;
+}

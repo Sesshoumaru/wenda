@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 import config
 from extensions import db
-from models import User,Question
+from models import User, Question,Answer
 from decorators import login_required
 
 app = Flask(__name__)
@@ -12,9 +12,9 @@ db.init_app(app)
 @app.route("/")
 def index():
     context = {
-        'questions' : Question.query.order_by('-createtime').all()
+        'questions': Question.query.order_by('-createtime').all()
     }
-    return render_template("index.html",**context)
+    return render_template("index.html", **context)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -64,8 +64,7 @@ def logout():
     return redirect(url_for("login"))
 
 
-
-@app.route("/question/",methods=["GET","POST"])
+@app.route("/question/", methods=["GET", "POST"])
 @login_required
 def question():
     if request.method == "GET":
@@ -75,7 +74,7 @@ def question():
         content = request.form.get('content')
         user_id = session.get("user_id")
 
-        question = Question(title = title,content = content)
+        question = Question(title=title, content=content)
         question.author_id = user_id
         db.session.add(question)
         db.session.commit()
@@ -86,7 +85,21 @@ def question():
 @app.route("/detail/<question_id>")
 def detail(question_id):
     question_model = Question.query.filter(Question.id == question_id).first()
-    return render_template('detail.html',question = question_model)
+    return render_template('detail.html', question=question_model)
+
+
+@app.route("/add_answer/", methods=['POST'])
+@login_required
+def add_answer():
+    content = request.form.get('answer_content')
+    question_id = request.form.get('question_id')
+    user_id = session.get('user_id')
+    answer = Answer(content = content)
+    answer.question_id = question_id
+    answer.author_id = user_id
+    db.session.add(answer)
+    db.session.commit()
+    return redirect(url_for('detail',question_id = question_id))
 
 @app.context_processor
 def my_context_processor():
@@ -99,9 +112,6 @@ def my_context_processor():
     return {}
 
 
-@app.route("/add_answer/",methods=['POST'])
-def add_answer():
-    pass
 
 if __name__ == "__main__":
     app.run()
