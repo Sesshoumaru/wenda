@@ -1,5 +1,6 @@
 from extensions import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash,check_password_hash
 
 
 class User(db.Model):
@@ -10,6 +11,13 @@ class User(db.Model):
     username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
+    def __init__(self,*args, **kwargs):
+        self.telephone = kwargs.get("telephone")
+        self.username = kwargs.get("username")
+        self.password =  generate_password_hash(kwargs.get("password"))
+
+    def check_password(self,raw_password):
+        return check_password_hash(self.password,raw_password)
 
 class Question(db.Model):
     __tablename__ = 'question'
